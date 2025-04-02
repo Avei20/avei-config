@@ -1,0 +1,38 @@
+(defcfg
+    process-unmapped-keys yes
+)
+(defsrc
+    f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+    caps a o e u h t n s
+    fn
+)
+
+(defvar
+    tap-time 150
+    hold-time 200
+)
+
+(defalias
+    escctrl (tap-hold 100 100 esc lctrl)
+    a (tap-hold $tap-time $hold-time a lmet)
+    o (tap-hold $tap-time $hold-time o lalt)
+    e (tap-hold $tap-time $hold-time e lsft)
+    u (tap-hold $tap-time $hold-time u lctl)
+    h (tap-hold $tap-time $hold-time h rctl)
+    t (tap-hold $tap-time $hold-time t rsft)
+    n (tap-hold $tap-time $hold-time n ralt)
+    s (tap-hold $tap-time $hold-time s rmet)
+    fnl (tap-hold 200 200 fn (layer-toggle fn))
+)
+
+(deflayer base
+    brdn brup _ _ _ _ prev pp next mute vold volu
+    @escctrl @a @o @e @u @h @t @n @s
+    @fnl
+)
+
+(deflayer fn
+    f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+    @escctrl _ _ _ _ _ _ _ _
+    fn
+)
